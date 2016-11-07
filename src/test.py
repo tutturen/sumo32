@@ -19,8 +19,14 @@ def print_ir_proximity():
     print(value)
 
 # reflectance
+calibrated = False
 def print_reflectance():
     sensor = reflectance.ReflectanceSensors()
+    if not calibrated:
+        for i in range(5):
+            sensor.calibrate()
+            time.sleep(1)
+        calibrated = True
     sensor.update()
     value = sensor.get_value()
     print(value)
