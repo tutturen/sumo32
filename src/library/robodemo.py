@@ -9,7 +9,7 @@ from .motors import Motors
 from .reflectance_sensors import ReflectanceSensors
 from .zumo_button import ZumoButton
 
-from lib.ultrasonic import Ultrasonic
+from .ultrasonic import Ultrasonic
 
 
 ## BE SURE TO RUN THESE DEMOS ON THE FLOOR or to have plenty of people guarding
