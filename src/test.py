@@ -1,4 +1,4 @@
-from lib/robodemo import robodemo
+from library.robodemo import robodemo
 
 if __name__ == '__main__':
     print('Doing the tourist demo. Just press the button...')
