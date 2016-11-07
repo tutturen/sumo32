@@ -43,7 +43,6 @@ class ReflectanceSensors():
         # Set the mode to GPIO.BOARD
         GPIO.setmode(GPIO.BOARD)
 
-
     def calibrate(self):
         print("calibrating...")
         self.recharge_capacitors()
@@ -104,7 +103,6 @@ class ReflectanceSensors():
 
     def get_value(self):
         return self.value
-
 
     def update(self):
         self.compute_value()
