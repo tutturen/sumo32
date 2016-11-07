@@ -17,7 +17,13 @@ def print_ir_proximity():
     sensor.update()
     value = sensor.get_value()
     print(value)
+
 # reflectance
+def print_reflectance():
+    sensor = reflectance.ReflectanceSensors()
+    sensor.update()
+    value = sensor.get_value()
+    print(value)
 
 if __name__ == '__main__':
     print('Testing ultrasonic...')
@@ -25,5 +31,6 @@ if __name__ == '__main__':
     while True:
         print_ultrasonic()
         print_ir_proximity()
+        print_reflectance()
         time.sleep(1)
 
