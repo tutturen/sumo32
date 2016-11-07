@@ -21,6 +21,7 @@ def print_ir_proximity():
 # reflectance
 calibrated = False
 def print_reflectance():
+    global calibrated
     sensor = reflectance.ReflectanceSensors()
     if not calibrated:
         for i in range(5):
