@@ -62,6 +62,7 @@ def tourist(steps=25,shots=5,speed=.25):
         if sum(vals) < 1:  # very dark area
             im = shoot_panorama(c,m,shots)
             im.dump_image('vacation_pic'+str(i)+'.jpeg')
+        print('Done with step %i' % i)
 
 def shoot_panorama(camera,motors,shots=5):
     s = 1
