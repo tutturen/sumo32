@@ -8,7 +8,7 @@ class SensorPrinter():
     def __init__(self):
         self.ultrasonic_sensor = ultrasonic.Ultrasonic()
         self.ir = ir.IRProximitySensor()
-        self.reflectance_sensor = reflectance.ReflectanceSensors(False)
+        self.reflectance_sensor = reflectance.ReflectanceSensors(True)
 
     def print_ultrasonic(self):
         self.ultrasonic_sensor.update()
