@@ -10,8 +10,13 @@ def print_ultrasonic():
     sensor.update()
     value = sensor.get_value()
     print(value)
-# ir-proximity
 
+# ir-proximity
+def print_ir_proximity():
+    sensor = ir.IRProximitySensor()
+    sensor.update()
+    value = sensor.get_value()
+    print(value)
 # reflectance
 
 if __name__ == '__main__':
@@ -19,5 +24,6 @@ if __name__ == '__main__':
     #robodemo.dancer()
     while True:
         print_ultrasonic()
+        print_ir_proximity()
         time.sleep(1)
 
