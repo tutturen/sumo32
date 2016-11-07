@@ -59,6 +59,7 @@ def tourist(steps=25,shots=5,speed=.25):
     for i in range(steps):
         random_step(m,speed=speed,duration=0.5)
         vals = rs.update()
+        print('RS VALUE SUM: %i' % sum(vals))
         if sum(vals) < 1:  # very dark area
             im = shoot_panorama(c,m,shots)
             im.dump_image('vacation_pic'+str(i)+'.jpeg')
