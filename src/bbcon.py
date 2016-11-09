@@ -1,6 +1,7 @@
 import time
 import behaviors
 from arbitrator import Arbitrator
+from motobs import MotOb
 
 class BBCon:
 
@@ -9,7 +10,7 @@ class BBCon:
         self.behaviors = []
         self.active_behaviors = [behaviors.WiggleBehaviour()]
         self.arbitrator = Arbitrator()
-        self.motobs = []
+        self.motobs = [MotOb()]
 
     def add_behavior(self, behavior):
         if behavior not in self.behaviors:
