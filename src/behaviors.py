@@ -24,7 +24,6 @@ class Behaviour(ABC):
     def get_priority_weight(self, robot):
         pass
 
-
 class WiggleBehaviour(Behaviour):
     def execute(self, robot):
         robot.motob.update([1, -1])

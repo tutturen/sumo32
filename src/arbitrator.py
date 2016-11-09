@@ -1,14 +1,13 @@
 import random
 
-
 class Arbitrator:
-    def choose_behaviour(self, behaviours):
-        behaviour_weights = [behaviour.get_priority_weight() for behaviour in behaviours]
-        total_weight = sum(behaviour_weights)
+    def choose_behavior(self, behaviors):
+        behavior_weights = [behavior.get_priority_weight() for behavior in behaviors]
+        total_weight = sum(behavior_weights)
 
         rand_choice = random.random() * total_weight
         accumulated_weight = 0
-        for i, behaviour_weight in enumerate(behaviour_weights):
-            accumulated_weight += behaviour_weight
+        for i, behavior_weight in enumerate(behavior_weights):
+            accumulated_weight += behavior_weight
             if rand_choice <= accumulated_weight:
-                return behaviours[i]
+                return behaviors[i]

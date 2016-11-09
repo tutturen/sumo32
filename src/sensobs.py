@@ -8,3 +8,4 @@ class Sensob(ABC):
     @abstractmethod
     def update(self):
         pass
+
