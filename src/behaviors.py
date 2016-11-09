@@ -2,11 +2,10 @@ import motobs
 
 from abc import ABC, abstractmethod
 
-
 class Behaviour(ABC):
-    """Represents an behaviour and its priority."""
-    def __init__(self):
-        pass
+    """Represents a behavior and its priority."""
+    def __init__(self, sensob_controller):
+        self.sensob_controller = sensob_controller
 
     """Get motor recommendations for this behaviour, and execute additional things if necessary."""
     @abstractmethod
@@ -33,4 +32,14 @@ class WiggleBehaviour(Behaviour):
 
     def get_priority_weight(self):
         # TODO: Implement this
-        return 1
+        return 0.5
+
+class TurnLeftBehavior(Behaviour):
+
+    def get_motor_recs(self):
+        return [
+            motobs.move_backward(0.5, 1)
+        ]
+
+    def get_priority_weight(self):
+        return 0.5

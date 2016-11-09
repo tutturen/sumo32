@@ -10,15 +10,15 @@ def main():
 
     sensob_controller = SensObController()
 
-    behaviors = [
-        behaviors.WiggleBehaviour(),
-        behaviors.AvoidLeftBehavior(sensob_controller),
-        behaviors.AvoidRightBehavior(sensob_controller),
-        behaviors.AvoidFrontBehavior(sensob_controller),
-        behaviors.PickedUpBehavior(sensob_controller)
+    behaviorList = [
+        behaviors.WiggleBehaviour(sensob_controller),
+        behaviors.TurnLeftBehavior(sensob_controller),
+        #behaviors.AvoidRightBehavior(sensob_controller),
+        #behaviors.AvoidFrontBehavior(sensob_controller),
+        #behaviors.PickedUpBehavior(sensob_controller)
     ]
 
-    bbcon = BBCon(sensob_controller, behaviors)
+    bbcon = BBCon(sensob_controller, behaviorList)
     while True:
         bbcon.run_one_timestep()
         if zumo_button.get_pressed():
