@@ -13,7 +13,7 @@ def main():
     behaviorList = [
         behaviors.WiggleBehaviour(sensob_controller),
         behaviors.TurnLeftBehavior(sensob_controller),
-        #behaviors.TurnRightBehavior(sensob_controller),
+        behaviors.TurnRightBehavior(sensob_controller),
         #behaviors.AvoidFrontBehavior(sensob_controller),
         #behaviors.PickedUpBehavior(sensob_controller)
     ]
