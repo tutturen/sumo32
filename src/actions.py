@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class Action(ABC):
     """Continuously manipulates the peripherals of the robot, and holds the state for this manipulation."""
     def __init__(self):

@@ -24,7 +24,6 @@ class ReflectanceSensors():
         print(self.max_val)
         print(self.min_val)
 
-
     def setup(self):
         # Initialize class variables
         self.max_val = [-1, -1, -1, -1, -1, -1]
@@ -107,7 +106,6 @@ class ReflectanceSensors():
     def update(self):
         self.compute_value()
         return self.value
-
 
     def compute_value(self):
         self.recharge_capacitors()
