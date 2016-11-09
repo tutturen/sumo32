@@ -32,9 +32,6 @@ class BBCon:
         print('Updating sensobs')
         for sensob in self.sensobs:
             sensob.update()
-        # Update all behaviors
-        # for behavior in self.active_behaviors:
-        #     behavior.update()
 
         # Let arbitrator choose action
         chosen_behavior = self.arbitrator.choose_behavior(self.active_behaviors)
@@ -47,5 +44,3 @@ class BBCon:
         for motor_rec in motor_recs:
             for motob in self.motobs:
                 motob.react(motor_rec)
-        # Wait
-        # self.wait()
