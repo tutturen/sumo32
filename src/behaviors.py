@@ -1,4 +1,5 @@
 import time
+import motobs
 
 from abc import ABC, abstractmethod
 
@@ -8,12 +9,9 @@ class Behaviour(ABC):
     def __init__(self):
         pass
 
-    """Execute the behaviour.
-
-    The Behaviour should manipulate the peripherals on the robot in this function.
-    """
+    """Get motor recommendations for this behaviour, and execute additional things if necessary."""
     @abstractmethod
-    def execute(self, robot):
+    def get_motor_recs(self):
         pass
 
     """Get a number between 0 and 1 that represents the priority of this task.
@@ -25,14 +23,13 @@ class Behaviour(ABC):
         pass
 
 class WiggleBehaviour(Behaviour):
-    def execute(self, robot):
-        robot.motob.update([1, -1])
-        time.sleep(0.25)
-        robot.motob.update([-1, 1])
-        time.sleep(0.5)
-        robot.motob.update([1, -1])
-        time.sleep(0.25)
-        robot.motob.update([0, 0])
+    def get_motor_recs(self):
+        return [
+            motobs.move_left(0.2, 0.25),
+            motobs.move_right(0.2, 0.5),
+            motobs.move_left(0.2, 0.25),
+            motobs.stop()
+        ]
 
     def get_priority_weight(self, robot):
         # TODO: Implement this
