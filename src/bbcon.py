@@ -1,6 +1,6 @@
 import time
 from arbitrator import Arbitrator
-from motobs import MotOb
+import motobs
 
 class BBCon:
 
@@ -8,7 +8,7 @@ class BBCon:
         self.sensobs = []
         self.behaviors = behaviors
         self.arbitrator = Arbitrator()
-        self.motobs = [MotOb()]
+        self.motobs = [motobs.MotOb()]
 
     def add_behavior(self, behavior):
         if behavior not in self.behaviors:
@@ -34,3 +34,7 @@ class BBCon:
         for motor_rec in motor_recs:
             for motob in self.motobs:
                 motob.react(motor_rec)
+
+    def stop(self):
+        for motob in self.motobs:
+            motob.react(motobs.stop())
