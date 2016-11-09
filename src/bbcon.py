@@ -43,14 +43,12 @@ class BBCon:
 
         motor_recs = chosen_behavior.get_motor_recs()
 
-        print('Motor recs: %s' % motor_recs)
-
         # Update the motobs based on the motor recommendations
         for motor_rec in motor_recs:
             for motob in self.motobs:
                 motob.react(motor_rec)
         # Wait
-        self.wait()
+        # self.wait()
 
         # REset all sensobs
         for sensob in self.sensobs:

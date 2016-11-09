@@ -25,9 +25,9 @@ class Behaviour(ABC):
 class WiggleBehaviour(Behaviour):
     def get_motor_recs(self):
         return [
-            motobs.move_left(0.4, 1.0),
-            motobs.move_right(0.4, 2.0),
-            motobs.move_left(0.4, 1.0),
+            motobs.move_left(0.4, 0.25),
+            motobs.move_right(0.4, 0.5),
+            motobs.move_left(0.4, 0.25),
             motobs.stop()
         ]
 
