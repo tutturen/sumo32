@@ -38,8 +38,10 @@ class TurnLeftBehavior(Behaviour):
 
     def get_motor_recs(self):
         return [
-            motobs.move_backward(0.5, 1)
+            motobs.move_left(0.5, 0.5)
         ]
 
     def get_priority_weight(self):
-        return 0.5
+        is_something_left = self.sensob_controller.object_side_proximity.get_value()[0]
+        print(self.sensob_controller.object_side_proximity.get_value())
+        return 0.8 if is_something_left else 0.0
