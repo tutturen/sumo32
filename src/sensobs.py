@@ -36,5 +36,5 @@ class UltrasonicTracking(Sensob):
         self.min_tracking_distance_cm = min_tracking_distance_cm
 
     def get_value(self):
-        value = self.ultrasonic_sensor.get_value
+        value = self.ultrasonic_sensor.get_value()
         return value < self.max_tracking_distance_cm and value > self.min_tracking_distance_cm
