@@ -1,3 +1,5 @@
+from random import randint
+
 import motobs
 
 from abc import ABC, abstractmethod
@@ -104,3 +106,17 @@ class PickedUpBehavior(Behavior):
             return 1
         else:
             return 0
+
+
+class DriveRandomlyBehavior(Behavior):
+    def __init__(self, sensob_controller, motor_recs):
+        super().__init__(sensob_controller)
+        self.motor_recs = motor_recs
+
+    def get_motor_recs(self):
+        return [
+            self.motor_recs[randint(len(self.motor_recs) - 1)]
+        ]
+
+    def get_priority_weight(self):
+        return 0.01
