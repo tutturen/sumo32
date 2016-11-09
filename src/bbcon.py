@@ -28,6 +28,7 @@ class BBCon:
 
     def run_one_timestep(self):
         # Update all sensobs
+        print('Updating sensobs')
         for sensob in self.sensobs:
             sensob.update()
         # Update all behaviors
@@ -37,7 +38,11 @@ class BBCon:
         # Let arbitrator choose action
         chosen_behavior = self.arbitrator.choose_behavior(self.active_behaviors)
 
+        print('Chosen behavior: %s' % chosen_behavior)
+
         motor_recs = chosen_behavior.get_motor_recs()
+
+        print('Motor recs: %s' % motor_recs)
 
         # Update the motobs based on the motor recommendations
         for motor_rec in motor_recs:
