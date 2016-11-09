@@ -1,14 +1,12 @@
 import time
-import behaviors
 from arbitrator import Arbitrator
 from motobs import MotOb
 
 class BBCon:
 
-    def __init__(self):
+    def __init__(self, behaviors):
         self.sensobs = []
-        self.behaviors = []
-        self.active_behaviors = [behaviors.WiggleBehaviour()]
+        self.behaviors = behaviors
         self.arbitrator = Arbitrator()
         self.motobs = [MotOb()]
 
@@ -16,14 +14,6 @@ class BBCon:
         if behavior not in self.behaviors:
             self.behaviors.append(behavior)
     
-    def activate_behavior(self, behavior):
-        if behavior not in self.active_behaviors:
-            self.active_behaviors.append(behavior)
-
-    def deactivate_behavior(self, behavior):
-        if behavior in self.active_behaviors:
-            self.active_behaviors.remove(behavior)
-
     def wait(self):
         time.sleep(0.5)
 
@@ -34,7 +24,7 @@ class BBCon:
             sensob.update()
 
         # Let arbitrator choose action
-        chosen_behavior = self.arbitrator.choose_behavior(self.active_behaviors)
+        chosen_behavior = self.arbitrator.choose_behavior(self.behaviors)
 
         print('Chosen behavior: %s' % chosen_behavior)
 
