@@ -1,4 +1,5 @@
 import time
+import behaviors
 from arbitrator import Arbitrator
 
 class BBCon:
@@ -6,7 +7,7 @@ class BBCon:
     def __init__(self):
         self.sensobs = []
         self.behaviors = []
-        self.active_behaviors = []
+        self.active_behaviors = [behaviors.WiggleBehaviour()]
         self.arbitrator = Arbitrator()
         self.motobs = []
 

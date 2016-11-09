@@ -1,4 +1,3 @@
-import time
 import motobs
 
 from abc import ABC, abstractmethod
@@ -21,6 +20,7 @@ class Behaviour(ABC):
     @abstractmethod
     def get_priority_weight(self):
         pass
+
 
 class WiggleBehaviour(Behaviour):
     def get_motor_recs(self):
