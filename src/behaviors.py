@@ -22,17 +22,27 @@ class Behavior(ABC):
 
 
 class WiggleBehaviour(Behavior):
+    def __init__(self, sensob_controller, preferred_distance, threshold):
+        super().__init__(sensob_controller)
+        self.preferred_distance = preferred_distance
+        self.threshold = threshold
+
     def get_motor_recs(self):
         return [
-            motobs.move_left(0.1, 0.25),
-            motobs.move_right(0.1, 0.5),
-            motobs.move_left(0.1, 0.25),
+            motobs.move_left(0.2, 0.25),
+            motobs.move_right(0.2, 0.5),
+            motobs.move_left(0.2, 0.25),
             motobs.stop()
         ]
 
     def get_priority_weight(self):
-        # TODO: Implement this
-        return 0.2
+        distance = self.sensob_controller.ultrasonic_tracking.get_value()
+        if distance < 50:
+            delta = distance - self.preferred_distance
+            if abs(delta) < self.threshold:
+                return 0.4
+
+        return 0
 
 class TurnLeftBehavior(Behavior):
 
@@ -75,7 +85,6 @@ class ApproachBehavior(Behavior):
 
     def get_priority_weight(self):
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
-        print(distance)
         if distance < 50:
             delta = distance - self.preferred_distance
             if abs(delta) > self.threshold:
