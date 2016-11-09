@@ -115,7 +115,7 @@ class DriveRandomlyBehavior(Behavior):
 
     def get_motor_recs(self):
         return [
-            self.motor_recs[randint(len(self.motor_recs) - 1)]
+            self.motor_recs[randint(0, len(self.motor_recs) - 1)]
         ]
 
     def get_priority_weight(self):
