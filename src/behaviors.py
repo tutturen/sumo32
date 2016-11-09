@@ -19,7 +19,7 @@ class Behaviour(ABC):
     Greater numbers mean greater priority. This should be dynamic depending on various sensob readings.
     """
     @abstractmethod
-    def get_priority_weight(self, robot):
+    def get_priority_weight(self):
         pass
 
 class WiggleBehaviour(Behaviour):
@@ -31,6 +31,6 @@ class WiggleBehaviour(Behaviour):
             motobs.stop()
         ]
 
-    def get_priority_weight(self, robot):
+    def get_priority_weight(self):
         # TODO: Implement this
         return 1
