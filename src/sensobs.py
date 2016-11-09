@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Sensob(ABC):
     def __init__(self):
         pass
@@ -12,10 +13,6 @@ class Sensob(ABC):
     def get_value(self):
         pass
 
-    @abstractmethod
-    def reset(self):
-        pass
-
 
 class ObjectSideProximity(Sensob):
     def __init__(self, irporoximity_sensor):
@@ -26,9 +23,6 @@ class ObjectSideProximity(Sensob):
 
     def get_value(self):
         return self.ir_proximity_sensors.get_value()
-
-    def reset(self):
-        self.ir_proximity_sensors.reset()
 
 
 class PickedUp(Sensob):
@@ -44,9 +38,6 @@ class PickedUp(Sensob):
         values = self.reflectance_sensors.get_value()
         return sum(values) < self.reflectance_treshold
 
-    def reset(self):
-        self.reflectance_sensors.reset()
-
 
 class UltrasonicTracking(Sensob):
     def __init__(self, ultrasonic_sensors, max_tracking_distance_cm, min_tracking_distance_cm):
@@ -60,6 +51,3 @@ class UltrasonicTracking(Sensob):
     def get_value(self):
         value = self.ultrasonic_sensor.get_value
         return value < self.max_tracking_distance_cm and value > self.min_tracking_distance_cm
-
-    def reset(self):
-        self.ultrasonic_sensor.update()

@@ -49,9 +49,3 @@ class BBCon:
                 motob.react(motor_rec)
         # Wait
         # self.wait()
-
-        # REset all sensobs
-        for sensob in self.sensobs:
-            sensob.reset()
-          
-    
