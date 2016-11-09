@@ -28,6 +28,7 @@ class MotOb:
         self.motors = Motors()
 
     def react(self, rec):
+        print('Reacting on: %s' % rec)
         if rec.action == 'MOVE_LEFT':
             self.motors.left(rec.speed, rec.duration)
         elif rec.action == 'MOVE_LEFT':
