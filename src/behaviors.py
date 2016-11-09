@@ -2,7 +2,7 @@ import motobs
 
 from abc import ABC, abstractmethod
 
-class Behaviour(ABC):
+class Behavior(ABC):
     """Represents a behavior and its priority."""
     def __init__(self, sensob_controller):
         self.sensob_controller = sensob_controller
@@ -21,7 +21,7 @@ class Behaviour(ABC):
         pass
 
 
-class WiggleBehaviour(Behaviour):
+class WiggleBehaviour(Behavior):
     def get_motor_recs(self):
         return [
             motobs.move_left(0.4, 0.25),
@@ -32,9 +32,9 @@ class WiggleBehaviour(Behaviour):
 
     def get_priority_weight(self):
         # TODO: Implement this
-        return 0.5
+        return 0.2
 
-class TurnLeftBehavior(Behaviour):
+class TurnLeftBehavior(Behavior):
 
     def get_motor_recs(self):
         return [
@@ -43,5 +43,14 @@ class TurnLeftBehavior(Behaviour):
 
     def get_priority_weight(self):
         is_something_left = self.sensob_controller.object_side_proximity.get_value()[0]
-        print(self.sensob_controller.object_side_proximity.get_value())
         return 0.8 if is_something_left else 0.0
+
+class TurnRightBehavior(Behavior):
+    def get_motor_recs(self):
+        return [
+            motobs.move_right(0.5, 0.5)
+        ]
+
+    def get_priority_weight(self):
+        is_something_right = self.sensob_controller.object_side_proximity.get_value()[1]
+        return 0.8 if is_something_right else 0.0
