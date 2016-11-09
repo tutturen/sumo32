@@ -31,8 +31,8 @@ class BBCon:
         for sensob in self.sensobs:
             sensob.update()
         # Update all behaviors
-        for behavior in self.active_behaviors:
-            behavior.update()
+        # for behavior in self.active_behaviors:
+        #     behavior.update()
 
         # Let arbitrator choose action
         chosen_behavior = self.arbitrator.choose_behavior(self.active_behaviors)
