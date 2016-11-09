@@ -1,4 +1,4 @@
-from bbcon import BBCon
+from bbcon import BBCon, SensObController
 import behaviors
 from library.zumo_button import ZumoButton
 
@@ -7,7 +7,18 @@ def main():
     print('Start -> Press knappen.')
     zumo_button = ZumoButton()
     zumo_button.wait_for_press()
-    bbcon = BBCon([behaviors.WiggleBehaviour()])
+
+    sensob_controller = SensObController()
+
+    behaviors = [
+        behaviors.WiggleBehaviour(),
+        behaviors.AvoidLeftBehavior(sensob_controller),
+        behaviors.AvoidRightBehavior(sensob_controller),
+        behaviors.AvoidFrontBehavior(sensob_controller),
+        behaviors.PickedUpBehavior(sensob_controller)
+    ]
+
+    bbcon = BBCon(sensob_controller, behaviors)
     while True:
         bbcon.run_one_timestep()
         if zumo_button.get_pressed():
