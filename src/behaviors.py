@@ -75,6 +75,7 @@ class ApproachBehavior(Behavior):
 
     def get_priority_weight(self):
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
+        print(distance)
         if distance < 50:
             delta = distance - self.preferred_distance
             if abs(delta) > self.threshold:
