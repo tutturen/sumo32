@@ -6,6 +6,9 @@ class MotorRec:
         self.speed = speed
         self.duration = duration
 
+    def __str__(self):
+        return 'MotorRec(%s, %i, %i)' % (self.action, self.speed, self.duration)
+
 # Motor recs
 def move_left(speed, duration):
     return MotorRec('MOVE_LEFT', speed, duration)
