@@ -2,7 +2,7 @@ import actions
 from abc import ABC, abstractmethod
 
 
-class Behaviour(ABC):
+class Behavior(ABC):
     """Represents an Action and its priority."""
     def __init__(self):
         pass
@@ -24,7 +24,7 @@ class Behaviour(ABC):
         pass
 
 
-class WiggleBehaviour(Behaviour):
+class WiggleBehavior(Behavior):
     def create_action(self):
         return actions.WiggleAction()
 

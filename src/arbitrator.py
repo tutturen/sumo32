@@ -1,8 +1,7 @@
 import random
 
-
 class Arbitrator:
-    def choose_behaviour(self, behaviours):
+    def choose_behavior(self, behaviours):
         behaviour_weights = [behaviour.get_priority_weight() for behaviour in behaviours]
         total_weight = sum(behaviour_weights)
 

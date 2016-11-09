@@ -1,5 +1,5 @@
 import time
-
+from arbitrator import Arbitrator
 
 class BBCon:
 
@@ -8,6 +8,7 @@ class BBCon:
         self.behaviors = []
         self.active_behaviors = []
         self.arbitrator = Arbitrator()
+        self.motobs = []
 
     def add_behavior(self, behavior):
         if behavior not in self.behaviors:
@@ -33,12 +34,14 @@ class BBCon:
             behavior.update()
 
         # Let arbitrator choose action
-        chosen_behavior = arbitrator.choose_behavior(self.active_behaviors)
+        chosen_behavior = self.arbitrator.choose_behavior(self.active_behaviors)
 
         motor_recs = chosen_behavior.get_motor_recs()
 
         # Update the motobs based on the motor recommendations
-        
+        for motor_rec in motor_recs:
+            for motob in self.motobs:
+                motob.react(motor_rec)
         # Wait
         self.wait()
 
