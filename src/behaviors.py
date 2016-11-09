@@ -54,3 +54,43 @@ class TurnRightBehavior(Behavior):
     def get_priority_weight(self):
         is_something_right = self.sensob_controller.object_side_proximity.get_value()[1]
         return 0.8 if is_something_right else 0.0
+
+
+class ApproachBehavior(Behavior):
+    def __init__(self, sensob_controller, preferred_distance, threshold):
+        super().__init__(sensob_controller)
+        self.preferred_distance = preferred_distance
+        self.threshold = threshold
+
+    def get_motor_recs(self):
+        distance = self.sensob_controller.ultrasonic_tracking.get_value()
+        if distance < self.preferred_distance:
+            return [
+                motobs.move_backward(0.3, 0.5)
+            ]
+        else:
+            return [
+                motobs.move_forward(0.3, 0.5)
+            ]
+
+    def get_priority_weight(self):
+        distance = self.sensob_controller.ultrasonic_tracking.get_value()
+        if distance < 50:
+            delta = distance - self.preferred_distance
+            if abs(delta) > self.threshold:
+                return 0.4
+
+        return 0
+
+
+class PickedUpBehavior(Behavior):
+    def get_motor_recs(self):
+        return [
+            motobs.stop()
+        ]
+
+    def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 1
+        else:
+            return 0

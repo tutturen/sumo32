@@ -14,8 +14,8 @@ def main():
         behaviors.WiggleBehaviour(sensob_controller),
         behaviors.TurnLeftBehavior(sensob_controller),
         behaviors.TurnRightBehavior(sensob_controller),
-        #behaviors.AvoidFrontBehavior(sensob_controller),
-        #behaviors.PickedUpBehavior(sensob_controller)
+        behaviors.ApproachBehavior(sensob_controller, 30, 5),
+        behaviors.PickedUpBehavior(sensob_controller)
     ]
 
     bbcon = BBCon(sensob_controller, behaviorList)
