@@ -1,18 +1,19 @@
-import actions
+import time
+
 from abc import ABC, abstractmethod
 
 
 class Behaviour(ABC):
-    """Represents an Action and its priority."""
+    """Represents an behaviour and its priority."""
     def __init__(self):
         pass
 
-    """Create a new Action object to be executed by the robot.
+    """Execute the behaviour.
 
-    This allows the Behaviour to execute an action with state, which can not be held by the Behaviour itself.
+    The Behaviour should manipulate the peripherals on the robot in this function.
     """
     @abstractmethod
-    def create_action(self):
+    def execute(self, robot):
         pass
 
     """Get a number between 0 and 1 that represents the priority of this task.
@@ -25,8 +26,14 @@ class Behaviour(ABC):
 
 
 class WiggleBehaviour(Behaviour):
-    def create_action(self):
-        return actions.WiggleAction()
+    def execute(self, robot):
+        robot.motob.update([1, -1])
+        time.sleep(0.25)
+        robot.motob.update([-1, 1])
+        time.sleep(0.5)
+        robot.motob.update([1, -1])
+        time.sleep(0.25)
+        robot.motob.update([0, 0])
 
     def get_priority_weight(self, robot):
         # TODO: Implement this
