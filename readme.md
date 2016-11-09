@@ -17,6 +17,7 @@ Tries to find objects to take pictures of. When an object is located, it wiggles
 - activate_behavior()
 - deactivate_behavior()
 - wait()
+- run_one_timestep()
 
 ##SenOb
 - update()
