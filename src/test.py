@@ -1,4 +1,4 @@
-#import library.robodemo as robodemo
+import library.robodemo as robodemo
 import library.ultrasonic as ultrasonic
 import library.reflectance_sensors as reflectance
 import library.irproximity_sensor as ir
@@ -25,7 +25,7 @@ class SensorPrinter():
         value = self.reflectance_sensor.get_value()
         print(value)
 
-if __name__ == '__main__':
+def test_sensors():
     print('Testing sensors...')
     printer = SensorPrinter()
     while True:
@@ -34,3 +34,9 @@ if __name__ == '__main__':
         printer.print_reflectance()
         time.sleep(1)
 
+def test_dance():
+    print('Testing dancer...')
+    robodemo.dancer()
+
+if __name__ == '__main__':
+    test_dance()
