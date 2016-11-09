@@ -10,3 +10,24 @@ Tries to find objects to take pictures of. When an object is located, it wiggles
 - If something is in an appropriate distance to the ultrasonic in front - stop and wiggle
 - If all the reflective sensors are low - take pictures
 - If something is on the side of the robot - turn towards it
+
+##BBCON
+- add_behavior()
+- add_sensob()
+- activate_behavior()
+- deactivate_behavior()
+- wait()
+
+##SenOb
+- update()
+- get_value()
+- reset()
+
+##Behavior
+- update(): MotorRec
+
+##MotOb
+- update(rec: MotorRec)
+
+##Arbitrator
+- choose_action(behaviors: Array<Behavior>)
