@@ -33,8 +33,9 @@ class MotOb:
     def react(self, rec):
         print('Reacting on: %s' % rec)
         if rec.action == 'MOVE_LEFT':
+            print('MOVING LEFT')
             self.motors.left(rec.speed, rec.duration)
-        elif rec.action == 'MOVE_LEFT':
+        elif rec.action == 'MOVE_RIGHT':
             self.motors.right(rec.speed, rec.duration)
         elif rec.action == 'MOVE_FORWARD':
             self.motors.forward(rec.speed, rec.duration)
