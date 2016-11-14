@@ -151,3 +151,16 @@ class TakePictureBehavior(Behavior):
             return 1
         else:
             return 0
+
+class BackOffBehavior(Behavior):
+    def __init__(self, sensob_controller):
+        super().__init__(sensob_controller)
+
+    def get_action_recs(self):
+        return [
+            actionrecs.MoveBackward(0.5, 0.5)
+        ]
+
+    def get_priority_weight(self):
+        return self.sensob_controller.black_image.get_value()
+

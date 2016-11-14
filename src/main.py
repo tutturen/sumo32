@@ -12,6 +12,7 @@ def main():
     sensob_controller = SensObController()
 
     behaviorList = [
+        behaviors.BackOffBehavior(sensob_controller),
         behaviors.WiggleBehaviour(sensob_controller, 30, 5),
         behaviors.TurnLeftBehavior(sensob_controller),
         behaviors.TurnRightBehavior(sensob_controller),
