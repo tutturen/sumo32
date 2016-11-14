@@ -31,10 +31,10 @@ class WiggleBehaviour(Behavior):
 
     def get_motor_recs(self):
         return [
-            motobs.move_left(0.2, 0.25),
-            motobs.move_right(0.2, 0.5),
-            motobs.move_left(0.2, 0.25),
-            motobs.stop()
+            motobs.MoveLeft(0.2, 0.25),
+            motobs.MoveRight(0.2, 0.5),
+            motobs.MoveLeft(0.2, 0.25),
+            motobs.Stop()
         ]
 
     def get_priority_weight(self):
@@ -50,7 +50,7 @@ class TurnLeftBehavior(Behavior):
 
     def get_motor_recs(self):
         return [
-            motobs.move_left(0.5, 0.5)
+            motobs.MoveLeft(0.5, 0.5)
         ]
 
     def get_priority_weight(self):
@@ -60,7 +60,7 @@ class TurnLeftBehavior(Behavior):
 class TurnRightBehavior(Behavior):
     def get_motor_recs(self):
         return [
-            motobs.move_right(0.5, 0.5)
+            motobs.MoveRight(0.5, 0.5)
         ]
 
     def get_priority_weight(self):
@@ -78,11 +78,11 @@ class ApproachBehavior(Behavior):
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < self.preferred_distance:
             return [
-                motobs.move_backward(0.3, 0.5)
+                motobs.MoveBackward(0.3, 0.5)
             ]
         else:
             return [
-                motobs.move_forward(0.3, 0.5)
+                motobs.MoveBackward(0.3, 0.5)
             ]
 
     def get_priority_weight(self):
@@ -98,7 +98,7 @@ class ApproachBehavior(Behavior):
 class PickedUpBehavior(Behavior):
     def get_motor_recs(self):
         return [
-            motobs.stop()
+            motobs.Stop()
         ]
 
     def get_priority_weight(self):

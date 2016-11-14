@@ -18,9 +18,9 @@ def main():
         behaviors.ApproachBehavior(sensob_controller, 30, 5),
         behaviors.PickedUpBehavior(sensob_controller),
         behaviors.DriveRandomlyBehavior(sensob_controller, [
-            motobs.move_forward(0.5, 1),
-            motobs.move_right(0.5, 1),
-            motobs.move_left(0.5, 1),
+            motobs.MoveForward(0.5, 1),
+            motobs.MoveRight(0.5, 1),
+            motobs.MoveLeft(0.5, 1),
         ])
     ]
 

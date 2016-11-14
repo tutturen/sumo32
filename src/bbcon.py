@@ -62,4 +62,4 @@ class BBCon:
 
     def stop(self):
         for motob in self.motobs:
-            motob.react(motobs.stop())
+            motob.react(motobs.Stop())
