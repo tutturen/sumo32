@@ -1,14 +1,29 @@
+import time
+
 from library.motors import Motors
 from abc import ABC, abstractmethod
 
 
-class MotorRec(ABC):
+class ActionRec(ABC):
+    @abstractmethod
+    def apply_to_motors(self, motors):
+        pass
+
+    @abstractmethod
+    def apply_to_camera_(self, camera):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class MotorRec(ActionRec):
     def __init__(self, speed, duration):
         self.speed = speed
         self.duration = duration
 
-    @abstractmethod
-    def apply(self, motors):
+    def apply_to_camera_(self, camera):
         pass
 
     @abstractmethod
@@ -17,7 +32,7 @@ class MotorRec(ABC):
 
 
 class MoveLeft(MotorRec):
-    def apply(self, motors):
+    def apply_to_motors(self, motors):
         motors.left(self.speed, self.duration)
 
     def __str__(self):
@@ -25,7 +40,7 @@ class MoveLeft(MotorRec):
 
 
 class MoveRight(MotorRec):
-    def apply(self, motors):
+    def apply_to_motors(self, motors):
         motors.right(self.speed, self.duration)
 
     def __str__(self):
@@ -33,7 +48,7 @@ class MoveRight(MotorRec):
 
 
 class MoveForward(MotorRec):
-    def apply(self, motors):
+    def apply_to_motors(self, motors):
         motors.forward(self.speed, self.duration)
 
     def __str__(self):
@@ -41,7 +56,7 @@ class MoveForward(MotorRec):
 
 
 class MoveBackward(MotorRec):
-    def apply(self, motors):
+    def apply_to_motors(self, motors):
         motors.forward(self.speed, self.duration)
 
     def __str__(self):
@@ -52,11 +67,22 @@ class Stop(MotorRec):
     def __init__(self):
         super().__init__(0, 0)
 
-    def apply(self, motors):
+    def apply_to_motors(self, motors):
         motors.stop()
 
     def __str__(self):
         return 'Stop'
+
+
+class TakePicture(ActionRec):
+    def apply_to_motors(self, motors):
+        pass
+
+    def apply_to_camera_(self, camera):
+        camera.update().save('images/' + str(time.time()) + '.jpg', 'JPEG')
+
+    def __str__(self):
+        return 'TakePicture'
 
 
 class MotOb:
@@ -65,4 +91,4 @@ class MotOb:
 
     def react(self, rec):
         print('Reacting on: %s' % rec)
-        rec.apply(self.motors)
+        rec.apply_to_motors(self.motors)
