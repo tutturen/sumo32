@@ -7,7 +7,7 @@ class ActionRec(ABC):
         pass
 
     @abstractmethod
-    def apply_to_camera_(self, camera):
+    def apply_to_camera(self, camera):
         pass
 
     @abstractmethod
@@ -64,7 +64,7 @@ class Stop(ActionRec):
     def apply_to_motors(self, motors):
         motors.stop()
 
-    def apply_to_camera_(self, camera):
+    def apply_to_camera(self, camera):
         pass
 
     def __str__(self):
@@ -75,7 +75,7 @@ class TakePicture(ActionRec):
     def apply_to_motors(self, motors):
         pass
 
-    def apply_to_camera_(self, camera):
+    def apply_to_camera(self, camera):
         camera.update().save('images/' + str(time.time()) + '.jpg', 'JPEG')
 
     def __str__(self):
