@@ -34,6 +34,9 @@ class UltrasonicTracking(Sensob):
         self.max_tracking_distance_cm = max_tracking_distance_cm
         self.min_tracking_distance_cm = min_tracking_distance_cm
 
+    def get_value(self):
+        return self.ultrasonic_sensor.get_value()
+
 class BlackImage(Sensob):
     def __init__(self, camera):
         self.camera = camera
