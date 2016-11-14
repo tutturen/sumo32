@@ -21,7 +21,8 @@ def main():
             actionrecs.MoveForward(0.5, 1),
             actionrecs.MoveRight(0.5, 1),
             actionrecs.MoveLeft(0.5, 1),
-        ])
+        ]),
+        behaviors.TakePictureBehavior(sensob_controller)
     ]
 
     bbcon = BBCon(sensob_controller, behaviorList)

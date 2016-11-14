@@ -84,9 +84,6 @@ class ApproachBehavior(Behavior):
         self.threshold = threshold
 
     def get_action_recs(self):
-        if self.sensob_controller.picked_up.get_value():
-            return 0
-
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < self.preferred_distance:
             return [
@@ -129,14 +126,14 @@ class DriveRandomlyBehavior(Behavior):
         self.motor_recs = motor_recs
 
     def get_action_recs(self):
-        if self.sensob_controller.picked_up.get_value():
-            return 0
-
         return [
             self.motor_recs[randint(0, len(self.motor_recs) - 1)]
         ]
 
     def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         return 0.01
 
 
