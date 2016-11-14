@@ -38,6 +38,9 @@ class WiggleBehaviour(Behavior):
         ]
 
     def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < 50:
             delta = distance - self.preferred_distance
@@ -54,6 +57,9 @@ class TurnLeftBehavior(Behavior):
         ]
 
     def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         is_something_left = self.sensob_controller.object_side_proximity.get_value()[0]
         return 0.8 if is_something_left else 0.0
 
@@ -64,6 +70,9 @@ class TurnRightBehavior(Behavior):
         ]
 
     def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         is_something_right = self.sensob_controller.object_side_proximity.get_value()[1]
         return 0.8 if is_something_right else 0.0
 
@@ -75,6 +84,9 @@ class ApproachBehavior(Behavior):
         self.threshold = threshold
 
     def get_action_recs(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < self.preferred_distance:
             return [
@@ -86,6 +98,9 @@ class ApproachBehavior(Behavior):
             ]
 
     def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < 50:
             delta = distance - self.preferred_distance
@@ -114,6 +129,9 @@ class DriveRandomlyBehavior(Behavior):
         self.motor_recs = motor_recs
 
     def get_action_recs(self):
+        if self.sensob_controller.picked_up.get_value():
+            return 0
+
         return [
             self.motor_recs[randint(0, len(self.motor_recs) - 1)]
         ]
