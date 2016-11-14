@@ -1,6 +1,6 @@
 from random import randint
 
-import motobs
+import actionrecs
 
 from abc import ABC, abstractmethod
 
@@ -11,7 +11,7 @@ class Behavior(ABC):
 
     """Get motor recommendations for this behaviour, and execute additional things if necessary."""
     @abstractmethod
-    def get_motor_recs(self):
+    def get_action_recs(self):
         pass
 
     """Get a number between 0 and 1 that represents the priority of this task.
@@ -29,12 +29,12 @@ class WiggleBehaviour(Behavior):
         self.preferred_distance = preferred_distance
         self.threshold = threshold
 
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
-            motobs.MoveLeft(0.2, 0.25),
-            motobs.MoveRight(0.2, 0.5),
-            motobs.MoveLeft(0.2, 0.25),
-            motobs.Stop()
+            actionrecs.MoveLeft(0.2, 0.25),
+            actionrecs.MoveRight(0.2, 0.5),
+            actionrecs.MoveLeft(0.2, 0.25),
+            actionrecs.Stop()
         ]
 
     def get_priority_weight(self):
@@ -48,9 +48,9 @@ class WiggleBehaviour(Behavior):
 
 class TurnLeftBehavior(Behavior):
 
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
-            motobs.MoveLeft(0.5, 0.5)
+            actionrecs.MoveLeft(0.5, 0.5)
         ]
 
     def get_priority_weight(self):
@@ -58,9 +58,9 @@ class TurnLeftBehavior(Behavior):
         return 0.8 if is_something_left else 0.0
 
 class TurnRightBehavior(Behavior):
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
-            motobs.MoveRight(0.5, 0.5)
+            actionrecs.MoveRight(0.5, 0.5)
         ]
 
     def get_priority_weight(self):
@@ -74,15 +74,15 @@ class ApproachBehavior(Behavior):
         self.preferred_distance = preferred_distance
         self.threshold = threshold
 
-    def get_motor_recs(self):
+    def get_action_recs(self):
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < self.preferred_distance:
             return [
-                motobs.MoveBackward(0.3, 0.5)
+                actionrecs.MoveBackward(0.3, 0.5)
             ]
         else:
             return [
-                motobs.MoveBackward(0.3, 0.5)
+                actionrecs.MoveBackward(0.3, 0.5)
             ]
 
     def get_priority_weight(self):
@@ -96,9 +96,9 @@ class ApproachBehavior(Behavior):
 
 
 class PickedUpBehavior(Behavior):
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
-            motobs.Stop()
+            actionrecs.Stop()
         ]
 
     def get_priority_weight(self):
@@ -113,7 +113,7 @@ class DriveRandomlyBehavior(Behavior):
         super().__init__(sensob_controller)
         self.motor_recs = motor_recs
 
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
             self.motor_recs[randint(0, len(self.motor_recs) - 1)]
         ]
@@ -126,9 +126,9 @@ class TakePictureBehavior(Behavior):
     def __init__(self, sensob_controller):
         super().__init__(sensob_controller)
 
-    def get_motor_recs(self):
+    def get_action_recs(self):
         return [
-            motobs.Stop()
+            actionrecs.Stop()
         ]
 
     def get_priority_weight(self):

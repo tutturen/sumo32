@@ -1,11 +1,13 @@
 import time
 from arbitrator import Arbitrator
-import motobs
+import actionobs
+import actionrecs
 
 from library.irproximity_sensor import IRProximitySensor
 from library.reflectance_sensors import ReflectanceSensors
 from library.ultrasonic import Ultrasonic
 import sensobs
+
 
 class SensObController():
 
@@ -24,13 +26,14 @@ class SensObController():
         for key in self.sensor:
             self.sensor[key].update()
 
+
 class BBCon:
 
     def __init__(self, sensob_controller, behaviors):
         self.sensob_controller = sensob_controller
         self.behaviors = behaviors
         self.arbitrator = Arbitrator()
-        self.motobs = [motobs.MotOb()]
+        self.actionobs = [actionobs.MotOb(), actionobs.CamOb()]
 
     def add_behavior(self, behavior):
         if behavior not in self.behaviors:
@@ -53,13 +56,14 @@ class BBCon:
 
         print('Chosen behavior: %s' % chosen_behavior)
 
-        motor_recs = chosen_behavior.get_motor_recs()
+        action_recs = chosen_behavior.get_action_recs()
 
         # Update the motobs based on the motor recommendations
-        for motor_rec in motor_recs:
-            for motob in self.motobs:
-                motob.react(motor_rec)
+        for action_rec in action_recs:
+            print('Reacting on: %s' % action_rec)
+            for actionob in self.actionobs:
+                actionob.apply(action_rec)
 
     def stop(self):
-        for motob in self.motobs:
-            motob.react(motobs.Stop())
+        for actionob in self.actionobs:
+            actionob.react(actionrecs.Stop())

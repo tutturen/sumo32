@@ -1,6 +1,3 @@
-import time
-
-from library.motors import Motors
 from abc import ABC, abstractmethod
 
 
@@ -63,12 +60,12 @@ class MoveBackward(MotorRec):
         return 'MoveBackward(%.2f, %.2f)' % (self.speed, self.duration)
 
 
-class Stop(MotorRec):
-    def __init__(self):
-        super().__init__(0, 0)
-
+class Stop(ActionRec):
     def apply_to_motors(self, motors):
         motors.stop()
+
+    def apply_to_camera_(self, camera):
+        pass
 
     def __str__(self):
         return 'Stop'
@@ -83,12 +80,3 @@ class TakePicture(ActionRec):
 
     def __str__(self):
         return 'TakePicture'
-
-
-class MotOb:
-    def __init__(self):
-        self.motors = Motors()
-
-    def react(self, rec):
-        print('Reacting on: %s' % rec)
-        rec.apply_to_motors(self.motors)

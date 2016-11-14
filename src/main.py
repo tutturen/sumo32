@@ -1,6 +1,6 @@
 from bbcon import BBCon, SensObController
 import behaviors
-import motobs
+import actionrecs
 from library.zumo_button import ZumoButton
 
 
@@ -18,9 +18,9 @@ def main():
         behaviors.ApproachBehavior(sensob_controller, 30, 5),
         behaviors.PickedUpBehavior(sensob_controller),
         behaviors.DriveRandomlyBehavior(sensob_controller, [
-            motobs.MoveForward(0.5, 1),
-            motobs.MoveRight(0.5, 1),
-            motobs.MoveLeft(0.5, 1),
+            actionrecs.MoveForward(0.5, 1),
+            actionrecs.MoveRight(0.5, 1),
+            actionrecs.MoveLeft(0.5, 1),
         ])
     ]
 
