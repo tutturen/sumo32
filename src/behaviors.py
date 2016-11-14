@@ -87,7 +87,7 @@ class ApproachBehavior(Behavior):
         distance = self.sensob_controller.ultrasonic_tracking.get_value()
         if distance < self.preferred_distance:
             return [
-                actionrecs.MoveBackward(0.3, 0.5)
+                actionrecs.MoveForward(0.3, 0.5)
             ]
         else:
             return [

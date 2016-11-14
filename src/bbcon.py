@@ -35,7 +35,7 @@ class BBCon:
         self.sensob_controller = sensob_controller
         self.behaviors = behaviors
         self.arbitrator = Arbitrator()
-        self.actionobs = [actionobs.MotOb(), actionobs.CamOb()]
+        self.actionobs = [actionobs.MotOb(), actionobs.CamOb(sensob_controller.sensor['camera'])]
 
     def add_behavior(self, behavior):
         if behavior not in self.behaviors:
