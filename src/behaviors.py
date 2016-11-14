@@ -103,7 +103,7 @@ class PickedUpBehavior(Behavior):
 
     def get_priority_weight(self):
         if self.sensob_controller.picked_up.get_value():
-            return 1
+            return 0.1
         else:
             return 0
 
@@ -120,3 +120,19 @@ class DriveRandomlyBehavior(Behavior):
 
     def get_priority_weight(self):
         return 0.01
+
+
+class TakePictureBehavior(Behavior):
+    def __init__(self, sensob_controller):
+        super().__init__(sensob_controller)
+
+    def get_motor_recs(self):
+        return [
+            motobs.Stop()
+        ]
+
+    def get_priority_weight(self):
+        if self.sensob_controller.picked_up.get_value() and all(self.sensob_controller.object_side_proximity.get_value()):
+            return 1
+        else:
+            return 0
