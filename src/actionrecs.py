@@ -56,7 +56,7 @@ class MoveForward(MotorRec):
 
 class MoveBackward(MotorRec):
     def apply_to_motors(self, motors):
-        motors.forward(self.speed, self.duration)
+        motors.backward(self.speed, self.duration)
 
     def __str__(self):
         return 'MoveBackward(%.2f, %.2f)' % (self.speed, self.duration)
