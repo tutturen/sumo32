@@ -22,6 +22,9 @@ def main():
             actionrecs.MoveForward(0.25, 1),
             actionrecs.MoveRight(0.5, 0.5),
             actionrecs.MoveLeft(0.5, 0.5),
+            actionrecs.MoveRight(0.5, 0.2),
+            actionrecs.MoveLeft(0.5, 0.2),
+            actionrecs.MoveForward(0.5, 0.5),
         ]),
         behaviors.TakePictureBehavior(sensob_controller)
     ]
