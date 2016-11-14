@@ -6,8 +6,8 @@ import actionrecs
 from library.irproximity_sensor import IRProximitySensor
 from library.reflectance_sensors import ReflectanceSensors
 from library.ultrasonic import Ultrasonic
+from library.camera import Camera
 import sensobs
-
 
 class SensObController():
 
@@ -15,11 +15,13 @@ class SensObController():
         self.sensor = {
             'proximity': IRProximitySensor(),
             'reflectance': ReflectanceSensors(),
-            'ultrasonic': Ultrasonic()
+            'ultrasonic': Ultrasonic(),
+            'camera': Camera()
         }
         self.object_side_proximity = sensobs.ObjectSideProximity(self.sensor['proximity'])
         self.picked_up = sensobs.PickedUp(self.sensor['reflectance'], 1)
         self.ultrasonic_tracking = sensobs.UltrasonicTracking(self.sensor['ultrasonic'], 100, 10)
+        self.black_image = sensobs.BlackImage(self.sensor['camera'])
 
     def update(self):
         # Update all sensors one time
