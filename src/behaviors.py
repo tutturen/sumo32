@@ -143,7 +143,7 @@ class TakePictureBehavior(Behavior):
 
     def get_action_recs(self):
         return [
-            actionrecs.Stop()
+            actionrecs.TakePicture()
         ]
 
     def get_priority_weight(self):
