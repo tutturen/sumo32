@@ -78,7 +78,7 @@ class TakePicture(ActionRec):
         pass
 
     def apply_to_camera(self, camera):
-        camera.update().save('images/' + str(time.time()) + '.jpg', 'JPEG')
+        camera.update().save('./images/' + str(time.time()) + '.jpg', 'JPEG')
 
     def __str__(self):
         return 'TakePicture'
