@@ -20,7 +20,7 @@ class MotorRec(ActionRec):
         self.speed = speed
         self.duration = duration
 
-    def apply_to_camera_(self, camera):
+    def apply_to_camera(self, camera):
         pass
 
     @abstractmethod
