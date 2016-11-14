@@ -1,4 +1,3 @@
-from library.camera import Camera
 from library.motors import Motors
 from abc import ABC, abstractmethod
 
@@ -18,8 +17,8 @@ class MotOb(ActionOb):
 
 
 class CamOb(ActionOb):
-    def __init__(self):
-        self.camera = Camera()
+    def __init__(self, camera):
+        self.camera = camera
 
     def apply(self, rec):
         rec.apply_to_camera(self.camera)
