@@ -162,5 +162,8 @@ class BackOffBehavior(Behavior):
         ]
 
     def get_priority_weight(self):
-        return self.sensob_controller.black_image.get_value()
+        ratio = self.sensob_controller.black_image.get_value()
+        if ratio < 0.5:
+            return 0.0
+        return ratio
 
