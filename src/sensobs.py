@@ -28,12 +28,25 @@ class PickedUp(Sensob):
         values = self.reflectance_sensors.get_value()
         return sum(values) < self.reflectance_treshold
 
-
 class UltrasonicTracking(Sensob):
     def __init__(self, ultrasonic_sensors, max_tracking_distance_cm, min_tracking_distance_cm):
         self.ultrasonic_sensor = ultrasonic_sensors
         self.max_tracking_distance_cm = max_tracking_distance_cm
         self.min_tracking_distance_cm = min_tracking_distance_cm
 
+class BlackImage(Sensob):
+    def __init__(self, camera):
+        self.camera = camera
+
+    def is_dark(self, pixel):
+        return (pixel[0] < 50 and pixel[1] < 50 and pixel[2] < 50)
+
     def get_value(self):
-        return self.ultrasonic_sensor.get_value()
+        im = self.camera.get_value()
+        dark_pixels = 0
+        for pixel in im.getdata():
+            if self.is_dark(pixel):
+                dark_pixels += 1
+        ratio = dark_pixels / len(im.getdata())
+        return ratio
+
