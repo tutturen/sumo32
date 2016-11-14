@@ -20,8 +20,8 @@ def main():
         behaviors.PickedUpBehavior(sensob_controller),
         behaviors.DriveRandomlyBehavior(sensob_controller, [
             actionrecs.MoveForward(0.25, 1),
-            actionrecs.MoveRight(0.25, 1),
-            actionrecs.MoveLeft(0.25, 1),
+            actionrecs.MoveRight(0.5, 0.5),
+            actionrecs.MoveLeft(0.5, 0.5),
         ]),
         behaviors.TakePictureBehavior(sensob_controller)
     ]
