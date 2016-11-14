@@ -66,4 +66,4 @@ class BBCon:
 
     def stop(self):
         for actionob in self.actionobs:
-            actionob.react(actionrecs.Stop())
+            actionob.apply(actionrecs.Stop())
